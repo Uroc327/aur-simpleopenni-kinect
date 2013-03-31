@@ -27,10 +27,10 @@ package() {
   cd "$srcdir/OpenNI_NITE_Installer-Linux${archnum}-${pkgver}"/OpenNI-Bin-Dev-Linux-*
   install -d "$pkgdir"/usr/{lib,bin,share/java}
   install -d "$pkgdir"/var/lib/ni
-  echo "<Licenses />" >"$pkgdir"/var/lib/ni/licenses.xml
-  echo "<Modules />" >"$pkgdir"/var/lib/ni/modules.xml
+  [ -e "$pkgdir"/var/lib/ni/license.xml ] || echo "<Licenses />" > "$pkgdir"/var/lib/ni/licenses.xml
+  [ -e "$pkgdir"/var/lib/ni/modules.xml ] || echo "<Modules />" > "$pkgdir"/var/lib/ni/modules.xml
   install -t "$pkgdir/usr/lib" Lib/*
-	install -t "$pkgdir/usr/bin" Bin/ni*
+  install -t "$pkgdir/usr/bin" Bin/ni*
   install -t "$pkgdir/usr/share/java" Jar/*
   cd "$srcdir/OpenNI_NITE_Installer-Linux${archnum}-${pkgver}"/NITE-Bin-Dev-*
   local nitever="1_5_2"
